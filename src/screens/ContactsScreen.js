@@ -3,17 +3,13 @@ import { View, Text, StyleSheet, ImageBackground, Image } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { AppHeaderIcon } from '../components/AppHeaderIcon';
 import { LinearGradient } from 'expo-linear-gradient';
+import { IMAGES } from '../components/images';
 
 export const ContactsScreen = ({}) => {
   return (
     <LinearGradient colors={['#de3c5e', '#7ebead']} style={{ flex: 1 }}>
       <View style={styles.center}>
-        <ImageBackground
-          source={{
-            uri: 'https://tikitakaquiz.s3.eu-central-1.amazonaws.com/team.jpg',
-          }}
-          style={styles.image}
-        >
+        <ImageBackground source={IMAGES['team']} style={styles.image}>
           <View style={styles.textWrap}>
             <Text style={styles.group}>Группа Орлы</Text>
             <Text style={styles.city}>Санкт-Петербург</Text>

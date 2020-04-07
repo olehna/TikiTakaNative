@@ -7,9 +7,9 @@ import { TopicScreen } from '../screens/TopicScreen';
 import { RatingScreen } from '../screens/RatingScreen';
 import { ProfileScreen } from '../screens/ProfileScreen';
 import { ContactsScreen } from '../screens/ContactsScreen';
-import { AboutScreen } from '../screens/AboutScreen';
+import { QuizListScreen } from '../screens/QuizListScreen';
 import { AuthScreen } from '../screens/AuthScreen';
-import { QuizScreen } from '../screens/QuizScreen';
+import  QuizScreen  from '../screens/QuizScreen';
 import { FinishedQuizScreen } from '../screens/FinishedQuizScreen';
 
 import { ProfileEditScreen } from '../screens/ProfileEditScreen';
@@ -57,9 +57,9 @@ const ContactsNavigator = createStackNavigator(
   navigatorOptions
 );
 
-const AboutNavigator = createStackNavigator(
+const QuizListNavigator = createStackNavigator(
   {
-    About: AboutScreen,
+    QuizList: QuizListScreen,
   },
   navigatorOptions
 );
@@ -116,8 +116,8 @@ const RouteConfigs = {
       drawerIcon: <Ionicons color={'white'} size={25} name="ios-person" />,
     },
   },
-  About: {
-    screen: AboutNavigator,
+  QuizList: {
+    screen: QuizListNavigator,
     navigationOptions: {
       drawerLabel: 'О приложении',
       drawerIcon: <Ionicons color={'white'} size={25} name="ios-star" />,

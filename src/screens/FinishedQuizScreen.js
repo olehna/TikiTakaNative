@@ -30,8 +30,9 @@ export const FinishedQuizScreen = ({}) => {
           ></FlatList>
         </View>
         <View style={styles.resultContainer}>
-          <View>
-            <Text>Результат</Text>
+          <View style={styles.result}>
+            <Text style={styles.resultText}>Результат</Text>
+            <Text style={styles.resultText}>6/10</Text>
           </View>
           <View style={styles.buttons}>
             <Button
@@ -42,6 +43,7 @@ export const FinishedQuizScreen = ({}) => {
                 backgroundColor: 'white',
                 borderRadius: 25,
                 height: 50,
+                width: 150,
               }}
               titleStyle={{ color: 'rgba(0,0,0,0.7)' }}
               // onPress={this.signUp}
@@ -54,6 +56,7 @@ export const FinishedQuizScreen = ({}) => {
                 backgroundColor: 'rgb(176, 193, 71)',
                 borderRadius: 25,
                 height: 50,
+                width: 150,
               }}
             />
           </View>
@@ -80,7 +83,7 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     flexDirection: 'row',
-    padding: 5,
+    padding: 2,
     backgroundColor: 'rgba(0,0,0,0.3)',
   },
   status: {
@@ -110,10 +113,29 @@ const styles = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
   },
-  resultContainer: {},
-  buttons: {
-    flexDirection: 'row',
+  resultContainer: {
+    height: 110,
+
+    width: '100%',
+    alignItems: 'center',
     justifyContent: 'space-between',
+  },
+  result: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
     alignContent: 'center',
+  },
+  resultText: {
+    fontFamily: 'open-bold',
+    fontSize: 32,
+    color: 'white',
+  },
+  buttons: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    alignContent: 'center',
+    paddingBottom: 10,
   },
 });

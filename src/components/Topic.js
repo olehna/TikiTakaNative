@@ -8,20 +8,111 @@ import {
   Platform,
 } from 'react-native';
 
-export const Topic = ({ topic, onOpen }) => {
+export const Topic = ({ props, onOpen }) => {
   return (
-    <TouchableOpacity activeOpacity={0.7} onPress={() => onOpen(topic)}>
+    <TouchableOpacity 
+    activeOpacity={0.7} 
+    // onPress={() => onOpen(topic)}
+    >
       <View style={styles.topic}>
         <View style={styles.container}>
-          <View style={styles.elevationLow}>
+          {/* <View style={styles.elevationLow}>
             <Image style={styles.image} source={{ uri: topic.img }}></Image>
           </View>
-          <Text style={styles.title}>{topic.text}</Text>
+          <Text style={styles.title}>{topic.text}</Text> */}
+          <Text style={styles.title}>
+            A
+            {/* {props.text} */}
+            </Text>
         </View>
       </View>
     </TouchableOpacity>
   );
 };
+
+// import React, { Component } from "react";
+// export default class QuizCard extends Component {
+ 
+//   render() {
+//     return (
+//       <div className={classes.card}>
+//         <div className={classes.cardImage}>
+       
+//           <img className={classes.img} src={`./img/iconCard/${this.props.icon}.png`} alt="" />
+//         </div>
+//         <div className={classes.cardTitle}>{this.props.name}</div>
+//       </div>
+//     );
+//   }
+// }
+
+
+// .cardTitle {
+//   font-family: "Open Sans", sans-serif;
+//   color: #fff;
+//   -webkit-backdrop-filter: blur(30px);
+//   backdrop-filter: blur(30px);
+//   width: 100%;
+//   font-weight: bold;
+//   font-size: 11px;
+//   margin-top: 10px;
+// }
+// .card {
+//   background-color: rgba(231, 227, 237, 0.3);
+//   width: 160px;
+//   height: 160px;
+//   margin: 10px;
+//   padding: 20px;
+//   border-radius: 10px;
+//   text-align: center;
+//   font-size: 32px;
+//   transition: all 0.4s;
+//   cursor: pointer;
+//   display: flex;
+//   justify-content: center;
+//   flex-direction: column;
+// }
+
+// .card:hover {
+//   transform: scale(1.03);
+//   box-shadow: 0 0 20px black;
+// }
+
+// .img {
+//   width: 100%;
+//   border-radius: 4px;
+//   max-width: 100px;
+// }
+
+// @media (max-width: 900px) {
+//   .card {
+//     background-color: rgba(231, 227, 237, 0.3);
+//     width: 140px;
+//     height: 140px;
+//     margin: 10px;
+//     padding: 20px;
+//     border-radius: 10px;
+//     text-align: center;
+//     font-size: 32px;
+//     transition: all 0.4s;
+//     cursor: pointer;
+//     display: flex;
+//     justify-content: center;
+//     flex-direction: column;
+//   }
+//   .cardTitle {
+//     font-size: 9px;
+//   }
+//   .img {
+//     width: 100%;
+//     border-radius: 4px;
+//     max-width: 80px;
+//   }
+// }
+
+
+
+
 
 const styles = StyleSheet.create({
   topic: {

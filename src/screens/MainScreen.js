@@ -1,19 +1,20 @@
 import React from 'react';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
-import { DATA } from '../data';
 import { AppHeaderIcon } from '../components/AppHeaderIcon';
-import { TopicList } from '../components/TopicList';
+import { LinearGradient } from 'expo-linear-gradient';
+import QuizList from '../components/QuizList'
 
-export const MainScreen = ({ navigation }) => {
-  const openTopicHandler = (topic) => {
-    navigation.navigate('Topic', { topicId: topic.id, topicText: topic.text });
-  };
 
-  return <TopicList data={DATA} onOpen={openTopicHandler} />;
+export const MainScreen = ({}) => {
+  return (
+    <LinearGradient colors={['#de3c5e', '#7ebead']} style={{ flex: 1 }}>
+      <QuizList />
+    </LinearGradient>
+  );
 };
 
 MainScreen.navigationOptions = ({ navigation }) => ({
-  headerTitle: 'Список тестов',
+  headerTitle: 'Выбери тему',
   headerLeft: (
     <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
       <Item

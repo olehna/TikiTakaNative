@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 import { AppLoading } from 'expo';
 import { AppNavigation } from './src/navigation/AppNavigation';
 import { bootstrap } from './src/bootstrap';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+import rootReducer from './src/store/reducers/rootReducer';
+
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 export default function App() {
   const [isReady, setIsReady] = useState(false);
@@ -17,5 +22,9 @@ export default function App() {
     );
   }
 
-  return <AppNavigation />;
+  return (
+    <Provider store={store}>
+      <AppNavigation />
+    </Provider>
+  );
 }

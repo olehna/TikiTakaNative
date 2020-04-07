@@ -3,18 +3,17 @@ import { View, Text, StyleSheet } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { AppHeaderIcon } from '../components/AppHeaderIcon';
 import { LinearGradient } from 'expo-linear-gradient';
+import QuizList from '../components/QuizList'
 
-export const AboutScreen = ({}) => {
+export const QuizListScreen = ({}) => {
   return (
     <LinearGradient colors={['#de3c5e', '#7ebead']} style={{ flex: 1 }}>
-      <View style={styles.center}>
-        <Text style={styles.text}>Тут будет About</Text>
-      </View>
+      <QuizList />
     </LinearGradient>
   );
 };
 
-AboutScreen.navigationOptions = ({ navigation }) => ({
+QuizListScreen.navigationOptions = ({ navigation }) => ({
   headerTitle: 'О нас',
   headerLeft: (
     <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
