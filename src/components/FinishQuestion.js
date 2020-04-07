@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 export const FinishQuestion = ({ question }) => {
   return (
@@ -9,10 +9,10 @@ export const FinishQuestion = ({ question }) => {
           <Text>{question.id}</Text>
         </View>
         <View style={styles.question}>
-          <Text>{question.question}</Text>
+          <Text style={styles.questionText}>{question.question}</Text>
         </View>
         <View style={styles.rightAnswer}>
-          <Text>{question.rightAnswerId}</Text>
+          <Text style={styles.answerText}>{question.rightAnswerId}</Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -22,11 +22,25 @@ export const FinishQuestion = ({ question }) => {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    borderWidth: 1,
+    flexDirection: 'row',
+    padding: 5,
+    backgroundColor: 'rgba(0,0,0,0.3)',
+    borderTopWidth: 1,
+    borderTopColor: 'rgba(255,255,255,0.5)',
   },
   status: {
-    borderWidth: 1,
+    width: '10%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  question: { borderWidth: 1 },
-  rightAnswer: { borderWidth: 1 },
+  question: {
+    width: '60%',
+  },
+  rightAnswer: {
+    width: '30%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  questionText: { fontSize: 12, fontFamily: 'open-regular', color: 'white' },
+  answerText: { fontSize: 14, fontFamily: 'open-regular', color: 'white' },
 });

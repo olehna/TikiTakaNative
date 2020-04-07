@@ -2,7 +2,6 @@ import React from 'react';
 import { createAppContainer, ThemeColors } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator } from 'react-navigation-drawer';
-import { Platform } from 'react-native';
 import { MainScreen } from '../screens/MainScreen';
 import { TopicScreen } from '../screens/TopicScreen';
 import { RatingScreen } from '../screens/RatingScreen';

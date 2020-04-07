@@ -1,4 +1,4 @@
-const QUIZ_DATA = [
+export const QUIZ_DATA = [
   {
     id: 1,
     topic: 'Life Style',
