@@ -4,8 +4,8 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { AppHeaderIcon } from '../components/AppHeaderIcon';
 import { LinearGradient } from 'expo-linear-gradient';
 import { ActiveQuiz } from '../components/ActiveQuiz/ActiveQuiz';
-// import ActiveQuiz from '../../components/ActiveQuiz/ActiveQuiz'
-// import FinishedQuiz from '../../components/FinishedQuiz/FinishedQuiz'
+import { FinishedQuizScreen } from '../screens/FinishedQuizScreen';
+import { Loader } from '../components/Loader';
 import { connect } from 'react-redux';
 import {
   fetchQuizById,
@@ -14,65 +14,49 @@ import {
 } from '../store/actions/quiz';
 
 class QuizScreen extends React.Component {
-  // componentDidMount() {
-  //   this.props.fetchQuizById(this.props.match.params.id);
-  // }
+  componentDidMount() {
+    this.props.fetchQuizById('302ee0e35320');
+    // this.props.fetchQuizById(this.props.match.params.id);
+  }
 
-  // componentWillUnmount() {
-  //   this.props.retryQuiz();
-  // }
+  componentWillUnmount() {
+    this.props.retryQuiz();
+  }
 
-  state = {};
   render() {
     return (
       <LinearGradient colors={['#de3c5e', '#7ebead']} style={{ flex: 1 }}>
-        <ImageBackground style={styles.Quiz}>
-          {/* <ImageBackground>
-          <View>
-            <Text>1/2</Text>
+        <View style={styles.Quiz}>
+          <View style={styles.QuizWrapper}>
+            {this.props.loading || !this.props.quiz ? (
+              <Loader />
+            ) : this.props.isFinished ? (
+              <FinishedQuizScreen
+                results={this.props.results}
+                quiz={this.props.quiz}
+                onRetry={this.props.retryQuiz}
+              />
+            ) : (
+              <ActiveQuiz
+                answers={this.props.quiz[this.props.activeQuestion].answers}
+                question={this.props.quiz[this.props.activeQuestion].question}
+                ImgLink={this.props.quiz[this.props.activeQuestion].ImgLink}
+                topic={this.props.quiz[this.props.activeQuestion].topic}
+                // onAnswerClick={this.props.quizAnswerClick}
+                quizLength={this.props.quiz.length}
+                answerNumber={this.props.activeQuestion + 1}
+                state={this.props.answerState}
+              />
+            )}
           </View>
-        </ImageBackground> */}
-
-          <Text>123</Text>
-          <Text>QuizScreen</Text>
-        </ImageBackground>
+        </View>
       </LinearGradient>
     );
   }
-  //   render() {
-  //     return (
-  //       <View style={styles.Quiz}>
-  //         <View style={styles.QuizWrapper}>
-  //          {/* {
-  //             this.props.loading || !this.props.quiz */}
-  //               {/* ? <Loader />
-  //               : this.props.isFinished
-  //                 ? <FinishedQuiz
-  //                   results={this.props.results}
-  //                   quiz={this.props.quiz}
-  //                   onRetry={this.props.retryQuiz}
-  //                 />
-  //                 : */}
-  //                 <ActiveQuiz
-  //                   answers={this.props.quiz[this.props.activeQuestion].answers}
-  //                   question={this.props.quiz[this.props.activeQuestion].question}
-  //                   ImgLink={this.props.quiz[this.props.activeQuestion].ImgLink}
-  //                   topic={this.props.quiz[this.props.activeQuestion].topic}
-  //                   // onAnswerClick={this.props.quizAnswerClick}
-  //                   quizLength={this.props.quiz.length}
-  //                   answerNumber={this.props.activeQuestion + 1}
-  //                   state={this.props.answerState}
-  //                 />
-  //           {/* } */}
-  //         </View>
-  //       </View>
-  //     )
-  //   }
-  // }
 }
 
 QuizScreen.navigationOptions = ({ navigation }) => ({
-  headerTitle: 'ИГРА',
+
   headerLeft: (
     <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
       <Item
@@ -88,7 +72,6 @@ const styles = StyleSheet.create({
   Quiz: {
     flex: 1,
     justifyContent: 'center',
-    paddingTop: 50,
     width: '100%',
   },
   QuizWrapper: {
