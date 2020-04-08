@@ -145,18 +145,18 @@ export function quizAnswerClick(answerId) {
       const timeout = window.setTimeout(() => {
         if (isQuizFinished(state)) {
           dispatch(finishQuiz())
-          firebase
-            .firestore()
-            .collection('users')
-            .doc(localStorage.userId)
-            .update({
-              games: firebase.firestore.FieldValue.increment(1),
-              rightAnswers: firebase
-                .firestore.FieldValue.increment(
-                  Object.values(results).filter(
-                    elem => elem === 'success').length)
-            })
-          console.log(results)
+          // firebase
+          //   .firestore()
+          //   .collection('users')
+          //   .doc(localStorage.userId)
+          //   .update({
+          //     games: firebase.firestore.FieldValue.increment(1),
+          //     rightAnswers: firebase
+          //       .firestore.FieldValue.increment(
+          //         Object.values(results).filter(
+          //           elem => elem === 'success').length)
+          //   })
+          // console.log(results)
         } else {
           dispatch(quizNextQuestion(state.activeQuestion + 1));
         }
@@ -169,17 +169,17 @@ export function quizAnswerClick(answerId) {
       const timeout = window.setTimeout(() => {
         if (isQuizFinished(state)) {
           dispatch(finishQuiz())
-          firebase
-            .firestore()
-            .collection('users')
-            .doc(localStorage.userId)
-            .update({
-              games: firebase.firestore.FieldValue.increment(1),
-              rightAnswers: firebase
-                .firestore.FieldValue.increment(
-                  Object.values(results).filter(
-                    elem => elem === 'success').length)
-            })
+          // firebase
+          //   .firestore()
+          //   .collection('users')
+          //   .doc(localStorage.userId)
+          //   .update({
+          //     games: firebase.firestore.FieldValue.increment(1),
+          //     rightAnswers: firebase
+          //       .firestore.FieldValue.increment(
+          //         Object.values(results).filter(
+          //           elem => elem === 'success').length)
+          //   })
         } else {
           dispatch(quizNextQuestion(state.activeQuestion + 1));
         }

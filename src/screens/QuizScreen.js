@@ -4,7 +4,7 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { AppHeaderIcon } from '../components/AppHeaderIcon';
 import { LinearGradient } from 'expo-linear-gradient';
 import { ActiveQuiz } from '../components/ActiveQuiz/ActiveQuiz';
-import { FinishedQuizScreen } from '../screens/FinishedQuizScreen';
+import { FinishedQuiz } from '../components/FinishedQuiz.js/FinishedQuiz';
 import { Loader } from '../components/Loader';
 import { connect } from 'react-redux';
 import {
@@ -15,8 +15,10 @@ import {
 
 class QuizScreen extends React.Component {
   componentDidMount() {
-    this.props.fetchQuizById('302ee0e35320');
-    // this.props.fetchQuizById(this.props.match.params.id);
+    const quizId = this.props.navigation
+      .dangerouslyGetParent()
+      .getParam('quizId');
+    this.props.fetchQuizById(quizId);
   }
 
   componentWillUnmount() {
@@ -31,10 +33,11 @@ class QuizScreen extends React.Component {
             {this.props.loading || !this.props.quiz ? (
               <Loader />
             ) : this.props.isFinished ? (
-              <FinishedQuizScreen
+              <FinishedQuiz
                 results={this.props.results}
                 quiz={this.props.quiz}
                 onRetry={this.props.retryQuiz}
+                navigation={this.props.navigation}
               />
             ) : (
               <ActiveQuiz
@@ -42,7 +45,7 @@ class QuizScreen extends React.Component {
                 question={this.props.quiz[this.props.activeQuestion].question}
                 ImgLink={this.props.quiz[this.props.activeQuestion].ImgLink}
                 topic={this.props.quiz[this.props.activeQuestion].topic}
-                // onAnswerClick={this.props.quizAnswerClick}
+                onAnswerClick={this.props.quizAnswerClick}
                 quizLength={this.props.quiz.length}
                 answerNumber={this.props.activeQuestion + 1}
                 state={this.props.answerState}
@@ -56,7 +59,6 @@ class QuizScreen extends React.Component {
 }
 
 QuizScreen.navigationOptions = ({ navigation }) => ({
-
   headerLeft: (
     <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>
       <Item
@@ -70,12 +72,14 @@ QuizScreen.navigationOptions = ({ navigation }) => ({
 
 const styles = StyleSheet.create({
   Quiz: {
-    flex: 1,
-    justifyContent: 'center',
+    height:'100%',
+    justifyContent: 'flex-start',
+    alignItems:'flex-start',
     width: '100%',
   },
   QuizWrapper: {
     width: '100%',
+    height:'100%',
   },
 });
 

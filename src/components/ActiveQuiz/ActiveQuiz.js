@@ -5,7 +5,7 @@ import { View, Text, ImageBackground, StyleSheet, FlatList } from 'react-native'
 // import Timer from "../UI/Timer/Timer";
 
 export const ActiveQuiz = (props) => {
-  console.log(props);
+  // console.log(props);
   return (
     <View style={styles.ActiveQuiz}>
       <View
@@ -14,7 +14,7 @@ export const ActiveQuiz = (props) => {
           alignContent: 'flex-end',
         }}
       >
-        <Text style={styles.Title}>{props.topic}</Text>
+        {/* <Text style={styles.Title}>{props.topic}</Text> */}
         {/* <Timer /> */}
       </View>
       <View style={styles.imgWrap}>
@@ -35,7 +35,7 @@ export const ActiveQuiz = (props) => {
      <AnswersList
      state={props.state}
         answers={props.answers}
-        // onAnswerClick={props.onAnswerClick}
+        onAnswerClick={props.onAnswerClick}
       />
     </View>
   );

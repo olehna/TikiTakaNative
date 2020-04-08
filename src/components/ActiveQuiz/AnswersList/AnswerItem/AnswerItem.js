@@ -1,27 +1,29 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 export const AnswerItem = (props) => {
-  // const cls = [styles.AnswerItem];
+  const styleArr = [styles.AnswerItem];
 
-  // if (props.state) {
-  //   cls.push(classes[props.state]);
-  // }
+  if (props.state) {
+    styleArr.push(styles[props.state]);
+  }
 
   return (
-    <View
-      style={styles.AnswerItem}
-      // className={cls.join(' ')}
-      // onClick={() => props.onAnswerClick(props.answer.id)}
+    <TouchableOpacity
+      style={styleArr}
+      activeOpacity={0.7}
+      onPress={() => props.onAnswerClick(props.answer.id)}
     >
-      <Text style={styles.AnswerText}>{props.answer.text}</Text>
-    </View>
+      <View>
+        <Text style={styles.AnswerText}>{props.answer.text}</Text>
+      </View>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   AnswerItem: {
-    height: 60,
+    height: 70,
     backgroundColor: 'rgba(119, 119, 119,0.5)',
     borderRadius: 5,
     padding: 10,
@@ -34,7 +36,7 @@ const styles = StyleSheet.create({
   AnswerText: {
     color: 'white',
     textAlign: 'center',
-    fontSize: 18,
+    fontSize: 16,
     fontFamily: 'open-bold',
   },
 

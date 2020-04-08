@@ -10,11 +10,19 @@ import {
 import { IMAGES } from './images';
 
 export default class QuizCard extends React.Component {
+  // state = {
+  //   quizId = ''
+  //  }
+ 
+  //  componentDidMount(){
+  //    this.setState(quizd)
+  //  }
   render() {
+    // console.log(this.props.quiz.id)
     return (
       <TouchableOpacity
         activeOpacity={0.7}
-        // onPress={() => onOpen(topic)}
+        onPress={() => this.props.onOpen(this.props.quiz.id)}
       >
         <View style={styles.quiz}>
           <View style={styles.container}>

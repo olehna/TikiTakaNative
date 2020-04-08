@@ -13,7 +13,7 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { AppHeaderIcon } from '../components/AppHeaderIcon';
 import { LinearGradient } from 'expo-linear-gradient';
 
-export const AuthScreen = ({}) => {
+export const AuthScreen = ({navigation}) => {
   return (
     <LinearGradient colors={['#de3c5e', '#7ebead']} style={{ flex: 1 }}>
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -69,7 +69,7 @@ export const AuthScreen = ({}) => {
                   borderRadius: 25,
                   height: 50,
                 }}
-                // onPress={this.signUp}
+                onPress={() => navigation.navigate('Main')}
               />
             </View>
           </View>

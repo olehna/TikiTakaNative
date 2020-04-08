@@ -8,6 +8,7 @@ import { QUIZ_DATA } from '../quiz_data';
 import { FinishQuestion } from '../components/FinishQuestion';
 
 export const FinishedQuizScreen = ({}) => {
+  
   return (
     <LinearGradient colors={['#de3c5e', '#7ebead']} style={{ flex: 1 }}>
       <ScrollView>

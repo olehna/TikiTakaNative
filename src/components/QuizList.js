@@ -21,7 +21,7 @@ class QuizList extends React.Component {
           <QuizCard
             quiz={item}
             icon={changeIconName(item.name)}
-            // onOpen={onOpen}
+            onOpen={this.props.onOpen}
           />
         )}
       />

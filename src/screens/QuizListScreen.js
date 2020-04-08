@@ -3,15 +3,21 @@ import { View, Text, StyleSheet } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { AppHeaderIcon } from '../components/AppHeaderIcon';
 import { LinearGradient } from 'expo-linear-gradient';
-import QuizList from '../components/QuizList'
+import QuizList from '../components/QuizList';
 
-export const QuizListScreen = ({}) => {
-  return (
-    <LinearGradient colors={['#de3c5e', '#7ebead']} style={{ flex: 1 }}>
-      <QuizList />
-    </LinearGradient>
-  );
-};
+export class QuizListScreen extends React.Component {
+  openQuizHandler = (quiz) => {
+    this.props.navigation.navigate({ routeName: 'Quiz', params: { quizId: quiz}})
+  };  
+  
+  render() {
+    return (
+      <LinearGradient colors={['#de3c5e', '#7ebead']} style={{ flex: 1 }}>
+        <QuizList onOpen={this.openQuizHandler} />
+      </LinearGradient>
+    );
+  }
+}
 
 QuizListScreen.navigationOptions = ({ navigation }) => ({
   headerTitle: 'О нас',
