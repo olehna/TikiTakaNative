@@ -3,26 +3,26 @@ import { createAppContainer, ThemeColors } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import { MainScreen } from '../screens/MainScreen';
-import { TopicScreen } from '../screens/TopicScreen';
 import { RatingScreen } from '../screens/RatingScreen';
 import { ProfileScreen } from '../screens/ProfileScreen';
 import { ContactsScreen } from '../screens/ContactsScreen';
 import { QuizListScreen } from '../screens/QuizListScreen';
 import { AuthScreen } from '../screens/AuthScreen';
-import  QuizScreen  from '../screens/QuizScreen';
-import { FinishedQuizScreen } from '../screens/FinishedQuizScreen';
-
+import QuizScreen from '../screens/QuizScreen';
 import { ProfileEditScreen } from '../screens/ProfileEditScreen';
-
 import { Ionicons } from '@expo/vector-icons';
-
-import { THEME } from '../theme';
 
 const navigatorOptions = {
   defaultNavigationOptions: {
     headerStyle: {
-      backgroundColor: THEME.RASP_COLOR,
+      backgroundColor: '#de3c5e',
       borderBottomWidth: 0,
+    },
+    headerTitleStyle:{
+      fontFamily:'MullerNarrow-ExtraBold',
+      // textAlign:"center", 
+      // flex:1 ,
+      fontSize:28,
     },
     headerTintColor: '#fff',
   },
@@ -31,7 +31,8 @@ const navigatorOptions = {
 const Navigator = createStackNavigator(
   {
     Main: MainScreen,
-    Topic: TopicScreen,
+    QuizList: QuizListScreen,
+    Quiz: QuizScreen,
   },
   navigatorOptions
 );
@@ -46,6 +47,7 @@ const RatingNavigator = createStackNavigator(
 const ProfileNavigator = createStackNavigator(
   {
     Profile: ProfileScreen,
+    ProfileEdit: ProfileEditScreen,
   },
   navigatorOptions
 );
@@ -57,13 +59,6 @@ const ContactsNavigator = createStackNavigator(
   navigatorOptions
 );
 
-const QuizListNavigator = createStackNavigator(
-  {
-    QuizList: QuizListScreen,
-  },
-  navigatorOptions
-);
-
 const AuthNavigator = createStackNavigator(
   {
     Auth: AuthScreen,
@@ -71,31 +66,8 @@ const AuthNavigator = createStackNavigator(
   navigatorOptions
 );
 
-// to delete
-const ProfileEditNavigator = createStackNavigator(
-  {
-    ProfileEdit: ProfileEditScreen,
-  },
-  navigatorOptions
-);
-
-const QuizNavigator = createStackNavigator(
-  {
-    Quiz: QuizScreen,
-  },
-  navigatorOptions
-);
-
-const FinishedQuizNavigator = createStackNavigator(
-  {
-    FinishedQuiz: FinishedQuizScreen,
-  },
-  navigatorOptions
-);
-//
-
 const RouteConfigs = {
-  Topics: {
+  Main: {
     screen: Navigator,
     navigationOptions: {
       drawerLabel: 'Главная',
@@ -116,13 +88,7 @@ const RouteConfigs = {
       drawerIcon: <Ionicons color={'white'} size={25} name="ios-person" />,
     },
   },
-  QuizList: {
-    screen: QuizListNavigator,
-    navigationOptions: {
-      drawerLabel: 'О приложении',
-      drawerIcon: <Ionicons color={'white'} size={25} name="ios-star" />,
-    },
-  },
+
   Auth: {
     screen: AuthNavigator,
     navigationOptions: {
@@ -130,13 +96,7 @@ const RouteConfigs = {
       drawerIcon: <Ionicons color={'white'} size={25} name="ios-log-in" />,
     },
   },
-  Logout: {
-    screen: AuthNavigator,
-    navigationOptions: {
-      drawerLabel: 'Выйти',
-      drawerIcon: <Ionicons color={'white'} size={25} name="ios-log-out" />,
-    },
-  },
+
   Contacts: {
     screen: ContactsNavigator,
     navigationOptions: {
@@ -144,30 +104,6 @@ const RouteConfigs = {
       drawerIcon: <Ionicons color={'white'} size={25} name="ios-mail" />,
     },
   },
-
-  // to delete
-  ProfileEdit: {
-    screen: ProfileEditNavigator,
-    navigationOptions: {
-      drawerLabel: 'ProfileEdit',
-    },
-  },
-
-  Quiz: {
-    screen: QuizNavigator,
-    navigationOptions: {
-      drawerLabel: 'Quiz',
-    },
-  },
-
-  FinishedQuiz: {
-    screen: FinishedQuizNavigator,
-    navigationOptions: {
-      drawerLabel: 'FinishedQuiz',
-    },
-  },
-
-  //
 };
 
 const DrawerNavigatorConfig = {
@@ -178,7 +114,7 @@ const DrawerNavigatorConfig = {
     activeBackgroundColor: 'rgba(53, 51, 51, 0.9)',
     inactiveTintColor: 'rgba(255, 255, 255, 0.7)',
     labelStyle: {
-      fontFamily: 'open-regular',
+      fontFamily: 'MullerNarrow-Light',
     },
 
     itemsContainerStyle: {
@@ -188,7 +124,7 @@ const DrawerNavigatorConfig = {
       opacity: 1,
     },
   },
-  drawerBackgroundColor: 'rgba(29, 27, 27, 0.99)', // sets background color of drawer
+  drawerBackgroundColor: 'rgba(29, 27, 27, 0.99)',
 };
 
 const MainNavigator = createDrawerNavigator(

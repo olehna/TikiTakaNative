@@ -1,11 +1,8 @@
 import React from 'react';
-import {AnswersList} from './AnswersList/AnswersList';
-import {AnswerItem} from './AnswersList/AnswerItem/AnswerItem'
-import { View, Text, ImageBackground, StyleSheet, FlatList } from 'react-native';
-// import Timer from "../UI/Timer/Timer";
+import { AnswersList } from './AnswersList/AnswersList';
+import { View, Text, ImageBackground, StyleSheet } from 'react-native';
 
 export const ActiveQuiz = (props) => {
-  // console.log(props);
   return (
     <View style={styles.ActiveQuiz}>
       <View
@@ -13,13 +10,10 @@ export const ActiveQuiz = (props) => {
           justifyContent: 'space-between',
           alignContent: 'flex-end',
         }}
-      >
-        {/* <Text style={styles.Title}>{props.topic}</Text> */}
-        {/* <Timer /> */}
-      </View>
+      ></View>
       <View style={styles.imgWrap}>
         <ImageBackground
-        imageStyle={{ borderRadius: 10 }}
+          imageStyle={{ borderRadius: 10 }}
           style={styles.Image}
           source={{ uri: props.ImgLink }}
           alt=""
@@ -31,9 +25,9 @@ export const ActiveQuiz = (props) => {
       </View>
       <View style={styles.Question}>
         <Text style={styles.questText}>{props.question}</Text>
-     </View>
-     <AnswersList
-     state={props.state}
+      </View>
+      <AnswersList
+        state={props.state}
         answers={props.answers}
         onAnswerClick={props.onAnswerClick}
       />
@@ -46,8 +40,8 @@ const styles = StyleSheet.create({
     height: '100%',
     color: '#2D2D2D',
     flexDirection: 'column',
-    padding:5,
-    margin:5,
+    padding: 5,
+    margin: 5,
   },
   Question: {
     justifyContent: 'center',
@@ -60,11 +54,13 @@ const styles = StyleSheet.create({
   questText: {
     width: '95%',
     textAlign: 'center',
-    fontSize: 18,
+    color: '#1a1a1a',
+    fontSize: 22,
+    fontFamily: 'MullerNarrow-ExtraBold',
   },
   Title: {
     fontSize: 28,
-    fontFamily: 'open-bold',
+    fontFamily: 'MullerNarrow-ExtraBold',
     marginBottom: 10,
     alignSelf: 'flex-start',
     color: 'white',

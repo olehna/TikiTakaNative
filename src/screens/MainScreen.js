@@ -6,9 +6,12 @@ import QuizList from '../components/QuizList';
 
 export class MainScreen extends React.Component {
   openQuizHandler = (quiz) => {
-    this.props.navigation.navigate({ routeName: 'Quiz', params: { quizId: quiz}})
-  };  
-  
+    this.props.navigation.navigate({
+      routeName: 'Quiz',
+      params: { quizId: quiz },
+    });
+  };
+
   render() {
     return (
       <LinearGradient colors={['#de3c5e', '#7ebead']} style={{ flex: 1 }}>

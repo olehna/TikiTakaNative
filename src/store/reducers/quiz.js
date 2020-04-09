@@ -55,7 +55,7 @@ export default function quizReducer(state = initialState, action) {
         activeQuestion: 0,
         answerState: null,
         isFinished: false,
-        results: {}
+        results: {},
       }
     case QUIZ_SET_TIMER:
       return {

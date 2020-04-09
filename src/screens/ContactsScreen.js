@@ -75,14 +75,18 @@ const styles = StyleSheet.create({
   },
   names: {
     color: 'white',
-    fontFamily: 'open-bold',
+    fontFamily: 'MullerNarrow-ExtraBold',
     fontSize: 28,
   },
   group: {
     color: 'white',
-    fontFamily: 'open-bold',
+    fontFamily: 'MullerNarrow-ExtraBold',
     fontSize: 24,
   },
+
+
+  
+
   city: {
     color: 'white',
   },
@@ -99,12 +103,12 @@ const styles = StyleSheet.create({
   },
   title: {
     color: 'white',
-    fontFamily: 'open-bold',
+    fontFamily: 'MullerNarrow-ExtraBold',
     fontSize: 48,
   },
   subtitle: {
     color: 'rgba(255,255,255,0.3)',
-    fontFamily: 'open-regular',
+    fontFamily: 'MullerNarrow-Light',
     fontSize: 20,
   },
 });

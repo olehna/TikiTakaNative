@@ -1,5 +1,5 @@
-import axios from '../../axios/axios-quiz'
-import firebase from '../../firebase'
+import axios from '../../axios/axios-quiz';
+import firebase from '../../firebase';
 import {
   FETCH_QUIZ_SUCCESS,
   FETCH_QUIZES_ERROR,
@@ -11,7 +11,6 @@ import {
   QUIZ_SET_STATE,
   QUIZ_SET_TIMER,
 } from './actionTypes';
-
 
 export function fetchQuizes() {
   return async (dispatch) => {
@@ -108,9 +107,21 @@ export function quizNextQuestion(number) {
   };
 }
 
-export function retryQuiz() {
+export function justRetryQuiz() {
   return {
     type: QUIZ_RETRY,
+  };
+}
+
+export function retryQuiz() {
+  return async (dispatch) => {
+    dispatch(justRetryQuiz());
+
+    try {
+      dispatch(fetchQuizes());
+    } catch (e) {
+      dispatch(fetchQuizesError(e));
+    }
   };
 }
 
@@ -140,11 +151,11 @@ export function quizAnswerClick(answerId) {
         results[question.id] = 'success';
       }
 
-      dispatch(quizSetState({ [answerId]: 'success' }, results))
+      dispatch(quizSetState({ [answerId]: 'success' }, results));
 
       const timeout = window.setTimeout(() => {
         if (isQuizFinished(state)) {
-          dispatch(finishQuiz())
+          dispatch(finishQuiz());
           // firebase
           //   .firestore()
           //   .collection('users')
@@ -163,12 +174,12 @@ export function quizAnswerClick(answerId) {
         window.clearTimeout(timeout);
       }, 500);
     } else {
-      results[question.id] = 'error'
-      dispatch(quizSetState({ [answerId]: 'error' }, results))
+      results[question.id] = 'error';
+      dispatch(quizSetState({ [answerId]: 'error' }, results));
 
       const timeout = window.setTimeout(() => {
         if (isQuizFinished(state)) {
-          dispatch(finishQuiz())
+          dispatch(finishQuiz());
           // firebase
           //   .firestore()
           //   .collection('users')

@@ -1,21 +1,9 @@
 import React from 'react';
-import {AnswerItem} from './AnswerItem/AnswerItem';
-import { View, FlatList, StyleSheet,Text } from 'react-native';
+import { AnswerItem } from './AnswerItem/AnswerItem';
+import { View, StyleSheet } from 'react-native';
 
 export const AnswersList = (props) => {
   return (
-    // <FlatList
-    //   data={props.answers}
-    //   keyExtractor={(answer) => answer.id.toString()}
-    //   renderItem={({ item }) => (
-    //     <AnswerItem
-    //       answer={item}
-    //       state={props.state ? props.state[answer.id] : null}
-    //     />
-    //   )}
-    // ></FlatList>
-
-    // <FlatList ></FlatList>    // </FlatList>
     <View style={styles.AnswersList}>
       {props.answers.map((answer, index) => {
         return (
@@ -27,14 +15,13 @@ export const AnswersList = (props) => {
           />
         );
       })}
-      </View>
-
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   AnswersList: {
-    height:'100%',
+    height: '100%',
     justifyContent: 'space-between',
     flexDirection: 'row',
     flexWrap: 'wrap',

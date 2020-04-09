@@ -9,16 +9,8 @@ import {
 } from 'react-native';
 import { IMAGES } from './images';
 
-export default class QuizCard extends React.Component {
-  // state = {
-  //   quizId = ''
-  //  }
- 
-  //  componentDidMount(){
-  //    this.setState(quizd)
-  //  }
+export class QuizCard extends React.Component {
   render() {
-    // console.log(this.props.quiz.id)
     return (
       <TouchableOpacity
         activeOpacity={0.7}
@@ -32,7 +24,6 @@ export default class QuizCard extends React.Component {
                 source={IMAGES[this.props.icon]}
               ></Image>
             </View>
-
             <Text style={styles.title}>{this.props.quiz.name}</Text>
           </View>
         </View>
@@ -71,7 +62,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: '#fff',
-    fontFamily: 'open-regular',
+    fontFamily: 'MullerNarrow-Light',
     textAlign: 'center',
   },
 });

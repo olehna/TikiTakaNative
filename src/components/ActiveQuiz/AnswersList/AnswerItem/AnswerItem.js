@@ -36,8 +36,8 @@ const styles = StyleSheet.create({
   AnswerText: {
     color: 'white',
     textAlign: 'center',
-    fontSize: 16,
-    fontFamily: 'open-bold',
+    fontSize: 18,
+    fontFamily: 'MullerNarrow-Light',
   },
 
   success: {

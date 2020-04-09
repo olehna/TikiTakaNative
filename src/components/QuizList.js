@@ -2,19 +2,21 @@ import React from 'react';
 import { View, StyleSheet, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { fetchQuizes } from '../store/actions/quiz';
-import QuizCard from './QuizCard';
+import {QuizCard} from './QuizCard';
 import { Loader } from '../components/Loader';
 import { changeIconName } from './utils/changeIconName';
 
 class QuizList extends React.Component {
+  componentDidMount() {
+    this.props.fetchQuizes();
+  }
+
   renderQuizes() {
     return (
-      // (this.props.quizes.length > 0) ?
-      // return (
       <FlatList
         data={this.props.quizes}
-        contentContainerStyle={{alignItems:'center'}}
-        style={{width:'100%'}}
+        contentContainerStyle={{ alignItems: 'center' }}
+        style={{ width: '100%' }}
         numColumns={3}
         keyExtractor={(quiz) => quiz.id.toString()}
         renderItem={({ item }) => (
@@ -26,11 +28,6 @@ class QuizList extends React.Component {
         )}
       />
     );
-    // ): null })
-  }
-
-  componentDidMount() {
-    this.props.fetchQuizes();
   }
 
   render() {
@@ -45,11 +42,8 @@ class QuizList extends React.Component {
 const styles = StyleSheet.create({
   wrapper: {
     height: '100%',
-    width:'100%',
+    width: '100%',
     paddingVertical: 20,
-    // padding: 10,
-    // justifyContent:'space-between',
-    // alignContent:'space-between',
     alignItems: 'center',
   },
 });

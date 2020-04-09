@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, ImageBackground } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { AppHeaderIcon } from '../components/AppHeaderIcon';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -15,10 +15,8 @@ import {
 
 class QuizScreen extends React.Component {
   componentDidMount() {
-    const quizId = this.props.navigation
-      .dangerouslyGetParent()
-      .getParam('quizId');
-    this.props.fetchQuizById(quizId);
+    let id = this.props.navigation.getParam('quizId');
+    this.props.fetchQuizById(id);
   }
 
   componentWillUnmount() {
@@ -26,6 +24,7 @@ class QuizScreen extends React.Component {
   }
 
   render() {
+    
     return (
       <LinearGradient colors={['#de3c5e', '#7ebead']} style={{ flex: 1 }}>
         <View style={styles.Quiz}>
@@ -72,14 +71,14 @@ QuizScreen.navigationOptions = ({ navigation }) => ({
 
 const styles = StyleSheet.create({
   Quiz: {
-    height:'100%',
+    height: '100%',
     justifyContent: 'flex-start',
-    alignItems:'flex-start',
+    alignItems: 'flex-start',
     width: '100%',
   },
   QuizWrapper: {
     width: '100%',
-    height:'100%',
+    height: '100%',
   },
 });
 

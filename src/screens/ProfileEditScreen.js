@@ -64,7 +64,7 @@ ProfileEditScreen.navigationOptions = ({ navigation }) => ({
       <Item
         title="Back"
         iconName="ios-arrow-back"
-        onPress={() => console.log('Вернуться назад')}
+        onPress={() => navigation.goBack()}
       />
     </HeaderButtons>
   ),
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: 'rgba(255,255,255,1)',
-    fontFamily: 'open-regular',
+    fontFamily: 'MullerNarrow-Light',
     fontSize: 18,
   },
   editContainer: {
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     color: 'white',
     borderRadius: 14,
     fontSize: 18,
-    fontFamily: 'open-regular',
+    fontFamily: 'MullerNarrow-Light',
     borderBottomColor: 'rgba(255,255,255,0.3)',
     borderBottomWidth: 1,
   },
