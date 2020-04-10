@@ -1,9 +1,17 @@
 import React from 'react';
-import { View, Text, StyleSheet, ImageBackground, Image } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ImageBackground,
+  TouchableHighlight,
+  Linking,
+} from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { AppHeaderIcon } from '../components/AppHeaderIcon';
 import { LinearGradient } from 'expo-linear-gradient';
 import { IMAGES } from '../components/images';
+import { Ionicons } from '@expo/vector-icons';
 
 export const ContactsScreen = ({}) => {
   return (
@@ -24,10 +32,34 @@ export const ContactsScreen = ({}) => {
           <Text style={styles.names}> Артём </Text>
         </View>
         <View style={styles.namesContainer}>
-          <View style={styles.gits}><Image></Image></View>
-          <View style={styles.gits}></View>
-          <View style={styles.gits}></View>
-          <View style={styles.gits}></View>
+          <View style={styles.gits}>
+            <TouchableHighlight
+              onPress={() => Linking.openURL('https://github.com/gusarovika')}
+            >
+              <Ionicons color={'white'} size={40} name="logo-github" />
+            </TouchableHighlight>
+          </View>
+          <View style={styles.gits}>
+            <TouchableHighlight
+              onPress={() => Linking.openURL('https://github.com/romarabotaet')}
+            >
+              <Ionicons color={'white'} size={40} name="logo-github" />
+            </TouchableHighlight>
+          </View>
+          <View style={styles.gits}>
+            <TouchableHighlight
+              onPress={() => Linking.openURL('https://github.com/olehna')}
+            >
+              <Ionicons color={'white'} size={40} name="logo-github" />
+            </TouchableHighlight>
+          </View>
+          <View style={styles.gits}>
+            <TouchableHighlight
+              onPress={() => Linking.openURL('https://github.com/off-art')}
+            >
+              <Ionicons color={'white'} size={40} name="logo-github" />
+            </TouchableHighlight>
+          </View>
         </View>
         <View style={styles.titleContainer}>
           <Text style={styles.title}>всем спасибо</Text>
@@ -78,23 +110,19 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.3)',
+  
   },
   names: {
     color: 'white',
     fontFamily: 'MullerNarrow-ExtraBold',
     fontSize: 28,
   },
-  gits: {
-
-  },
+  gits: {},
   group: {
     color: 'white',
     fontFamily: 'MullerNarrow-ExtraBold',
     fontSize: 24,
   },
-
-
-  
 
   city: {
     color: 'white',
