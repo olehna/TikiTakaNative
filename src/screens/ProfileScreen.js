@@ -1,11 +1,12 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { Component } from 'react';
 import {
   View,
   Text,
   StyleSheet,
   FlatList,
-  Image,
   AsyncStorage,
+  ScrollView,
+  RefreshControl,
 } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { AppHeaderIcon } from '../components/AppHeaderIcon';
@@ -14,10 +15,6 @@ import { Avatar, Button } from 'react-native-elements';
 import { RATING_DATA } from '../rating_data';
 import axios from 'axios';
 const info = RATING_DATA[0];
-// const projectID = 'quiz-91601'
-// const key = 'AIzaSyARZUqpQVEMgqIGUgFpJqPVFDqakbegp2A'
-// const collection = `users`
-// const url = `https://firestore.googleapis.com/v1beta1/projects/${projectID}/databases/(default)/documents/${collection}?key=${key}`
 export class ProfileScreen extends Component {
   state = {
     users: [],
@@ -88,7 +85,19 @@ export class ProfileScreen extends Component {
     console.log('THIS STATE:', this.state);
     return (
       <LinearGradient colors={['#de3c5e', '#7ebead']} style={{ flex: 1 }}>
-        <View style={styles.center}>
+        <ScrollView
+          refreshControl={
+            <RefreshControl
+              refreshing={this.state.refreshing}
+              onRefresh={() => this.handleRefresh()}
+            />
+          }
+          contentContainerStyle={{
+            flexGrow: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
           <View style={styles.avaAndName}>
             <View style={styles.avaContainer}>
               <Avatar
@@ -114,30 +123,30 @@ export class ProfileScreen extends Component {
                     <Text style={styles.number}>{Object.values(item)[0]}</Text>
                   </View>
                 )}
-                refreshing={this.state.refreshing}
-                onRefresh={this.handleRefresh}
               />
             </View>
           </View>
-        </View>
 
-        <Button
-          type="solid"
-          title="Выйти"
-          raised
-          buttonStyle={{
-            backgroundColor: 'white',
-            borderRadius: 25,
-            height: 50,
-          }}
-          titleStyle={{ color: 'rgba(0,0,0,0.7)' }}
-          onPress={() =>
-            this.clearStorage().then(() =>
-              this.props.navigation.navigate('Auth')
-            )
-          }
-        />
-        {/* </View> */}
+          <View>
+            <Button
+              type="solid"
+              title="Выйти"
+              raised
+              buttonStyle={{
+                backgroundColor: 'white',
+                borderRadius: 25,
+                height: 50,
+                width: 200,
+              }}
+              titleStyle={{ color: 'rgba(0,0,0,0.7)' }}
+              onPress={() =>
+                this.clearStorage().then(() =>
+                  this.props.navigation.navigate('Auth')
+                )
+              }
+            />
+          </View>
+        </ScrollView>
       </LinearGradient>
     );
   }
@@ -167,8 +176,6 @@ const styles = StyleSheet.create({
   center: {
     flex: 1,
     width: '100%',
-    justifyContent: 'space-around',
-    alignItems: 'center',
   },
   avaContainer: {
     width: 150,
@@ -181,7 +188,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   avaAndName: {
-    // marginVertical: 25,
     alignItems: 'center',
   },
   name: {
@@ -196,11 +202,12 @@ const styles = StyleSheet.create({
   },
   statisticsContainer: {
     alignItems: 'center',
-    justifyContent:'center',
+    justifyContent: 'center',
     width: '90%',
-    height: '60%',
+    height: '50%',
     backgroundColor: 'rgba(0,0,0,0.2)',
     borderRadius: 10,
+    marginBottom: 10,
   },
 
   statistics: {

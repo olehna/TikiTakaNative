@@ -24,7 +24,7 @@ export const ContactsScreen = ({}) => {
           <Text style={styles.names}> Артём </Text>
         </View>
         <View style={styles.namesContainer}>
-          <View style={styles.gits}></View>
+          <View style={styles.gits}><Image></Image></View>
           <View style={styles.gits}></View>
           <View style={styles.gits}></View>
           <View style={styles.gits}></View>

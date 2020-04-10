@@ -21,21 +21,12 @@ export const AuthScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [login, setLogin] = useState('');
-  // // const [isAuth, setIsAuth] = useState(false);
   const projectID = 'quiz-91601';
   const key = 'AIzaSyARZUqpQVEMgqIGUgFpJqPVFDqakbegp2A';
   const collection = `users`;
   const url = `https://firestore.googleapis.com/v1beta1/projects/${projectID}/databases/(default)/documents/${collection}?key=${key}`;
 
   findByMail = async (email) => {
-    // const userEmail = await AsyncStorage.getItem('email');
-    // this.setState = ({ userEmail: userEmail })
-    // console.log(this.state.userEmail);
-    // const projectID = 'quiz-91601';
-    // const key = 'AIzaSyARZUqpQVEMgqIGUgFpJqPVFDqakbegp2A';
-    // const collection = `users`;
-    // const url = `https://firestore.googleapis.com/v1beta1/projects/${projectID}/databases/(default)/documents/${collection}?key=${key}`;
-    // let RATING_DATA = []
     const userBase = await axios.get(url);
     const userList = await userBase.data.documents.map((doc) => doc.fields);
     const userInfo = userList.find(
@@ -76,7 +67,6 @@ export const AuthScreen = ({ navigation }) => {
           lastName: { stringValue: '' },
           games: { integerValue: 0 },
           rightAnswers: { integerValue: 0 },
-          // userId: { stringValue: user.user.uid },
         },
       };
   
@@ -155,7 +145,6 @@ export const AuthScreen = ({ navigation }) => {
                   height: 50,
                 }}
                 onPress={() => signUp(email, password, login)}
-                // onPress={()=> navigation.navigate('Main')}
               />
             </View>
           </View>

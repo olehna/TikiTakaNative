@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, ScrollView, StyleSheet, Text, FlatList } from 'react-native';
+import { View, ScrollView, StyleSheet, Text, FlatList , RefreshControl} from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { AppHeaderIcon } from '../components/AppHeaderIcon';
 import { Rating } from '../components/Rating';
@@ -21,6 +21,7 @@ export class RatingScreen extends Component {
     ],
     loading: true,
     refreshing: false,
+    isFetching: false,
   };
 
   componentDidMount() {
@@ -38,6 +39,7 @@ export class RatingScreen extends Component {
       rating: userList,
       loading: false,
       refreshing: false,
+      info: [{}],
     });
   };
 
@@ -57,12 +59,14 @@ export class RatingScreen extends Component {
     if (el.games) {
       if (el.games.integerValue < 5) {
         coef = 0.5;
+        console.log('coef 0.5', el, el.games.integerValue)
       } else if (el.games.integerValue >= 5 && el.games.integerValue < 10) {
         coef = 0.8;
       } else if (el.games.integerValue >= 10 && el.games.integerValue < 25) {
         coef = 0.9;
       } else {
         coef = 1;
+        console.log('coef 1', el, el.games.integerValue)
       }
       if (el.rightAnswers) {
         return Math.round(el.rightAnswers.integerValue * coef);
@@ -81,7 +85,15 @@ export class RatingScreen extends Component {
           <Loader />
         ) : (
           <View>
-            <ScrollView>
+            <ScrollView
+              refreshControl={
+                <RefreshControl
+                  refreshing={this.state.refreshing}
+                  onRefresh={() => this.handleRefresh()}
+                  tintColor="red"
+                />
+              }
+            >
               <View>
                 <View style={styles.HeadContainer}>
                   <View style={styles.usernameRow}>
@@ -95,32 +107,15 @@ export class RatingScreen extends Component {
                   </View>
                 </View>
                 <View>
-                  <FlatList
-                    data={this.state.rating
-                      .sort((a, b) => this.fairRating(b) - this.fairRating(a))
-                      .filter(
-                        (elem) =>
-                          elem.games !== undefined &&
-                          elem.games.integerValue > 0
-                      )}
-                    keyExtractor={(item, index) => index.toString()}
-                    renderItem={({ item }) => (
-                      // <View style={styles.RowContainer}>
-                      <View>
-                        <Text>{item.userName.stringValue.toString()}</Text>
-                        <Text>{item.games.integerValue.toString()}</Text>
-                        <Text>{item.rightAnswers.integerValue.toString()}</Text>
-                      </View>
-                    )}
-                    refreshing={this.state.refreshing}
-                    onRefresh={this.handleRefresh}
-                  />
-
-                  {/* {this.state.rating
+                  {this.state.rating
                     .sort((a, b) => this.fairRating(b) - this.fairRating(a))
+                    .filter(
+                      (elem) =>
+                        elem.games !== undefined && elem.games.integerValue > 0
+                    )
                     .map((elem, index) => {
-                      return <Rating user={elem} key={index} />; */}
-                  {/* })} */}
+                      return <Rating user={elem} key={index} fairRating ={this.fairRating}/>;
+                    })}
                 </View>
               </View>
             </ScrollView>

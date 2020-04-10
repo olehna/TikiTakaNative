@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-export const Rating = ({ user }) => {
+export const Rating = ({ user, fairRating }) => {
   return (
     
       <View style={styles.RowContainer}>
@@ -20,7 +20,7 @@ export const Rating = ({ user }) => {
         </View>
         <View style={styles.pointsRow}>
           <Text style={styles.pointsRowText}>
-            {user.rightAnswers ? user.rightAnswers.integerValue.toString() : 0}
+            {user.rightAnswers ? fairRating(user).toString() : 0}
           </Text>
         </View>
       </View>

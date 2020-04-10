@@ -7,8 +7,6 @@ import { RatingScreen } from '../screens/RatingScreen';
 import { ProfileScreen } from '../screens/ProfileScreen';
 import { ContactsScreen } from '../screens/ContactsScreen';
 import { QuizListScreen } from '../screens/QuizListScreen';
-// import { AuthScreen } from '../screens/AuthScreen';
-import { Logout } from '../screens/Logout';
 import QuizScreen from '../screens/QuizScreen';
 import { ProfileEditScreen } from '../screens/ProfileEditScreen';
 import { Ionicons } from '@expo/vector-icons';
@@ -32,7 +30,6 @@ const Navigator = createStackNavigator(
     Main: MainScreen,
     QuizList: QuizListScreen,
     Quiz: QuizScreen,
-    // Logout: Logout
   },
   navigatorOptions
 );
@@ -83,14 +80,6 @@ const RouteConfigs = {
     },
   },
 
-  // Auth: {
-  //   screen: AuthNavigator,
-  //   navigationOptions: {
-  //     drawerLabel: 'Авторизация',
-  //     drawerIcon: <Ionicons color={'white'} size={25} name="ios-log-in" />,
-  //   },
-  // },
-
   Contacts: {
     screen: ContactsNavigator,
     navigationOptions: {
@@ -98,16 +87,8 @@ const RouteConfigs = {
       drawerIcon: <Ionicons color={'white'} size={25} name="ios-mail" />,
     },
   },
-  
-  // Logout: {
-  //   screen: Logout,
-  //   navigationOptions: {
-  //     drawerLabel: 'Выйти',
-  //     drawerIcon: <Ionicons color={'white'} size={25} name="ios-log-in" />,
-  //   },
-  // },
-
 };
+
 
 
 
@@ -139,4 +120,3 @@ const MainNavigator = createDrawerNavigator(
 );
 
 export default MainNavigator
-// export const AppNavigation = createAppContainer(MainNavigator);
