@@ -23,6 +23,12 @@ export const ContactsScreen = ({}) => {
           <Text style={styles.names}> Олег </Text>
           <Text style={styles.names}> Артём </Text>
         </View>
+        <View style={styles.namesContainer}>
+          <View style={styles.gits}></View>
+          <View style={styles.gits}></View>
+          <View style={styles.gits}></View>
+          <View style={styles.gits}></View>
+        </View>
         <View style={styles.titleContainer}>
           <Text style={styles.title}>всем спасибо</Text>
           <Text style={styles.subtitle}>все свободны</Text>
@@ -77,6 +83,9 @@ const styles = StyleSheet.create({
     color: 'white',
     fontFamily: 'MullerNarrow-ExtraBold',
     fontSize: 28,
+  },
+  gits: {
+
   },
   group: {
     color: 'white',

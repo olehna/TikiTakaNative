@@ -11,7 +11,6 @@ export class MainScreen extends React.Component {
       params: { quizId: quiz },
     });
   };
-
   render() {
     return (
       <LinearGradient colors={['#de3c5e', '#7ebead']} style={{ flex: 1 }}>

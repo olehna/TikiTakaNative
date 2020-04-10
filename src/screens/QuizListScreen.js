@@ -19,7 +19,7 @@ export class QuizListScreen extends React.Component {
       </LinearGradient>
     );
   }
-}
+} 
 
 QuizListScreen.navigationOptions = ({ navigation }) => ({
   headerTitle: 'О нас',

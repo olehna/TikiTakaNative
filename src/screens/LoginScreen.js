@@ -17,16 +17,16 @@ import { AppHeaderIcon } from '../components/AppHeaderIcon';
 import { LinearGradient } from 'expo-linear-gradient';
 import axios from 'axios';
 
-export const AuthScreen = ({ navigation }) => {
+export const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [login, setLogin] = useState('');
-  // // const [isAuth, setIsAuth] = useState(false);
+  // const [isAuth, setIsAuth] = useState(false);
   const projectID = 'quiz-91601';
   const key = 'AIzaSyARZUqpQVEMgqIGUgFpJqPVFDqakbegp2A';
   const collection = `users`;
   const url = `https://firestore.googleapis.com/v1beta1/projects/${projectID}/databases/(default)/documents/${collection}?key=${key}`;
-
+ 
   findByMail = async (email) => {
     // const userEmail = await AsyncStorage.getItem('email');
     // this.setState = ({ userEmail: userEmail })
@@ -41,67 +41,39 @@ export const AuthScreen = ({ navigation }) => {
     const userInfo = userList.find(
       (elem) => elem.email['stringValue'] === email
     );
-    console.log('USER FOUND:', userInfo);
-    return userInfo;
+    console.log('USER FOUND');
+    return userInfo
+  }
   
-  };
-  signUp = async (useremail, userpassword, username) => {
+ 
+  logIn = async (useremail, userpassword) => {
     try {
-      if (password.length < 6) {
-        alert('введите минимум 6 символов');
-        return;
-      }
       const user = await firebase
         .auth()
-        .createUserWithEmailAndPassword(useremail, userpassword);
-
-      const newUser = firebase.auth().currentUser;
-      newUser 
-        .updateProfile({
-          userName: username,
-          photoURL: "https://example.com/jane-q-user/profile.jpg"})
-        .then(function () {
-          console.log('success', newUser)
-        })
-        .catch(function (error) {
-          console.log('error')
-        });
-
-
-      const datafetch = {
+        .signInWithEmailAndPassword(useremail, userpassword);
+      await AsyncStorage.setItem('userId', user.user.uid);
+      await AsyncStorage.setItem('email', useremail);
+      // console.log('asuncstor', Number(user.user.uid));
+      const oneUserUrl = `https://firestore.googleapis.com/v1beta1/projects/${projectID}/databases/(default)/documents/${collection}/${user.user.uid}?key=${key}&updateMask.fieldPaths=userId`;
+      const updatFetch = {
         fields: {
-          email: { stringValue: useremail },
-          userName: { stringValue: username },
-          firstName: { stringValue: '' },
-          lastName: { stringValue: '' },
-          games: { integerValue: 0 },
-          rightAnswers: { integerValue: 0 },
-          // userId: { stringValue: user.user.uid },
+          userId: { stringValue: user.user.uid },
         },
       };
-  
-      const oneUserUrl = `https://firestore.googleapis.com/v1beta1/projects/${projectID}/databases/(default)/documents/${collection}/${newUser.uid}?key=${key}&updateMask.fieldPaths=games&updateMask.fieldPaths=rightAnswers&updateMask.fieldPaths=email&updateMask.fieldPaths=firstName&updateMask.fieldPaths=lastName&updateMask.fieldPaths=userName`
-
-
       const response = await fetch(oneUserUrl, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(datafetch),
+        body: JSON.stringify(updatFetch),
       });
-      const data = response;
-      console.log('created new user ', data);
-      const userInfo = await findByMail(useremail);
-     
-      await AsyncStorage.setItem('games', '0');
-      await AsyncStorage.setItem('rightAnswers', '0');
-      // await AsyncStorage.setItem('UID', userInfo.userId.stringValue);
-      await AsyncStorage.setItem('userId', user.user.uid);
-      await AsyncStorage.setItem('email', useremail);
-      await AsyncStorage.setItem('userName', username);
-      const value = await AsyncStorage.getItem('email');
+      const userInfo = await findByMail(useremail)
+      await AsyncStorage.setItem('UID', userInfo.userId.stringValue);
+      await AsyncStorage.setItem('games', userInfo.games.integerValue)
+      await AsyncStorage.setItem('rightAnswers', userInfo.rightAnswers.integerValue)
+      // console.log(await AsyncStorage.getItem('UID'));
+      // console.log(response);
       navigation.navigate('Main');
     } catch (error) {
-      console.log(error.toString());
+      console.log('что-то пошло не так');
     }
   };
 
@@ -124,13 +96,6 @@ export const AuthScreen = ({ navigation }) => {
           <View>
             <TextInput
               style={styles.input}
-              placeholder="Логин"
-              autoCapitalize="none"
-              placeholderTextColor="white"
-              onChangeText={(val) => setLogin(val)}
-            />
-            <TextInput
-              style={styles.input}
               placeholder="Email"
               autoCapitalize="none"
               placeholderTextColor="white"
@@ -146,6 +111,18 @@ export const AuthScreen = ({ navigation }) => {
             />
             <View style={styles.buttons}>
               <Button
+                type="solid"
+                title="Войти"
+                raised
+                buttonStyle={{
+                  backgroundColor: 'white',
+                  borderRadius: 25,
+                  height: 50,
+                }}
+                titleStyle={{ color: 'rgba(0,0,0,0.7)' }}
+                onPress={() => logIn(email, password)}
+              />
+              <Button
                 title="Регистрация"
                 color="rgb(176, 193, 71)"
                 raised
@@ -154,8 +131,8 @@ export const AuthScreen = ({ navigation }) => {
                   borderRadius: 25,
                   height: 50,
                 }}
-                onPress={() => signUp(email, password, login)}
-                // onPress={()=> navigation.navigate('Main')}
+                onPress={() => navigation.navigate('Signup')}
+            
               />
             </View>
           </View>
@@ -165,7 +142,7 @@ export const AuthScreen = ({ navigation }) => {
   );
 };
 
-AuthScreen.navigationOptions = ({ navigation }) => ({
+LoginScreen.navigationOptions = ({ navigation }) => ({
   headerTitle: 'Авторизация',
   headerLeft: (
     <HeaderButtons HeaderButtonComponent={AppHeaderIcon}>

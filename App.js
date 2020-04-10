@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { AppLoading } from 'expo';
-import { AppNavigation } from './src/navigation/AppNavigation';
+import AppNavigation from './src/navigation/index'
+// import { AppNavigation } from './src/navigation/AppNavigation';
 import { bootstrap } from './src/bootstrap';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
@@ -21,6 +22,7 @@ export default function App() {
       />
     );
   }
+  
 
   return (
     <Provider store={store}>

@@ -1,71 +1,70 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
-import { ListItem } from 'react-native-elements';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 export const Rating = ({ user }) => {
-  console.log(user);
   return (
-    <TouchableOpacity activeOpacity={0.7}>
-      {/* <Text >
-        {user.email.stringValue}
-      </Text> */}
-      <ListItem
-        leftElement={
-          <Text
-           style={styles.subtitle}>{user.games.integerValue.toString()}</Text>
-        }
-        title={user.email.stringValue.toString()}
-        rightTitle={user.rightAnswers.integerValue.toString()}
-        // leftAvatar={{ source: { uri: rating.photo } }}
-        rightTitleStyle={{ color: 'white', fontFamily: 'open-bold' }}
-        titleStyle={{ color: 'white', fontFamily: 'open-regular' }}
-        containerStyle={{
-          backgroundColor: 'rgba(255,255,255,0)',
-          borderBottomColor: 'rgba(255,255,255,0.2)',
-        }}
-        // containerStyle={[{ backgroundColor: 'rgba(29, 27, 27, 0.99)' }]}
-        bottomDivider
-      />
-    </TouchableOpacity>
+    
+      <View style={styles.RowContainer}>
+        <View style={styles.username}>
+          <Text style={styles.usernameRowText}>
+            {user.userName
+              ? user.userName.stringValue.toString()
+              : 0}
+          </Text>
+        </View>
+        <View style={styles.gamesRow}>
+          <View>
+            <Text style={styles.gamesRowText}>
+              {user.games ? user.games.integerValue.toString() : 0}
+            </Text>
+          </View>
+        </View>
+        <View style={styles.pointsRow}>
+          <Text style={styles.pointsRowText}>
+            {user.rightAnswers ? user.rightAnswers.integerValue.toString() : 0}
+          </Text>
+        </View>
+      </View>
+    
   );
 };
+
 const styles = StyleSheet.create({
-  subtitle: {
-    color: 'rgb(255,255,255)',
-    fontFamily: 'open-bold',
+  RowContainer: {
+    width: '100%',
+    flexDirection: 'row',
+    padding: 10,
+    backgroundColor: 'rgba(0,0,0,0.1)',
+    borderTopWidth: 1,
+    borderTopColor: 'rgba(255,255,255,0.5)',
+  },
+  gamesRowText: {
+    color: 'white',
+    fontSize: 18,
+    fontFamily: 'MullerNarrow-Light',
+  },
+  gamesRow: {
+    width: '20%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  username: {
+    width: '60%',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+  },
+  pointsRow: {
+    width: '20%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  usernameRowText: {
+    fontSize: 18,
+    fontFamily: 'MullerNarrow-Light',
+    color: 'white',
+  },
+  pointsRowText: {
+    fontSize: 18,
+    fontFamily: 'MullerNarrow-Light',
+    color: 'white',
   },
 });
-
-// import React from 'react';
-// import { StyleSheet, Text, TouchableOpacity } from 'react-native';
-// import { ListItem } from 'react-native-elements';
-// export const Rating = ({ rating }) => {
-//   return (
-//     <TouchableOpacity activeOpacity={0.7}>
-//       <ListItem
-//         leftElement={
-//           <Text style={styles.subtitle}>{rating.place.toString()}</Text>
-//         }
-//         title={rating.name}
-//         rightTitle={rating.rating.toString()}
-//         leftAvatar={{ source: { uri: rating.photo } }}
-//         rightTitleStyle={{ color: 'white', fontFamily: 'MullerNarrow-ExtraBold', }}
-//         titleStyle={{ color: 'white', fontFamily: 'MullerNarrow-Light', fontSize:20 }}
-//         containerStyle={{
-//           backgroundColor: 'rgba(255,255,255,0)',
-//           borderBottomColor: 'rgba(255,255,255,0.2)',
-//         }}
-//         // containerStyle={[{ backgroundColor: 'rgba(29, 27, 27, 0.99)' }]}
-//         bottomDivider
-//       />
-//     </TouchableOpacity>
-//   );
-// };
-
-// const styles = StyleSheet.create({
-//   subtitle: {
-//     color: 'rgb(255,255,255)',
-//     fontFamily: 'MullerNarrow-ExtraBold',
-//   },
-// });
-
-

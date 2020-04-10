@@ -7,7 +7,7 @@ export const AnswerItem = (props) => {
   if (props.state) {
     styleArr.push(styles[props.state]);
   }
-
+ 
   return (
     <TouchableOpacity
       style={styleArr}

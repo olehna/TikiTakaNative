@@ -7,7 +7,8 @@ import { RatingScreen } from '../screens/RatingScreen';
 import { ProfileScreen } from '../screens/ProfileScreen';
 import { ContactsScreen } from '../screens/ContactsScreen';
 import { QuizListScreen } from '../screens/QuizListScreen';
-import { AuthScreen } from '../screens/AuthScreen';
+// import { AuthScreen } from '../screens/AuthScreen';
+import { Logout } from '../screens/Logout';
 import QuizScreen from '../screens/QuizScreen';
 import { ProfileEditScreen } from '../screens/ProfileEditScreen';
 import { Ionicons } from '@expo/vector-icons';
@@ -20,8 +21,6 @@ const navigatorOptions = {
     },
     headerTitleStyle:{
       fontFamily:'MullerNarrow-ExtraBold',
-      // textAlign:"center", 
-      // flex:1 ,
       fontSize:28,
     },
     headerTintColor: '#fff',
@@ -33,6 +32,7 @@ const Navigator = createStackNavigator(
     Main: MainScreen,
     QuizList: QuizListScreen,
     Quiz: QuizScreen,
+    // Logout: Logout
   },
   navigatorOptions
 );
@@ -59,12 +59,6 @@ const ContactsNavigator = createStackNavigator(
   navigatorOptions
 );
 
-const AuthNavigator = createStackNavigator(
-  {
-    Auth: AuthScreen,
-  },
-  navigatorOptions
-);
 
 const RouteConfigs = {
   Main: {
@@ -89,22 +83,33 @@ const RouteConfigs = {
     },
   },
 
-  Auth: {
-    screen: AuthNavigator,
-    navigationOptions: {
-      drawerLabel: 'Авторизация',
-      drawerIcon: <Ionicons color={'white'} size={25} name="ios-log-in" />,
-    },
-  },
+  // Auth: {
+  //   screen: AuthNavigator,
+  //   navigationOptions: {
+  //     drawerLabel: 'Авторизация',
+  //     drawerIcon: <Ionicons color={'white'} size={25} name="ios-log-in" />,
+  //   },
+  // },
 
   Contacts: {
     screen: ContactsNavigator,
     navigationOptions: {
-      drawerLabel: 'Свяжитесь с нами',
+      drawerLabel: 'Контакты',
       drawerIcon: <Ionicons color={'white'} size={25} name="ios-mail" />,
     },
   },
+  
+  // Logout: {
+  //   screen: Logout,
+  //   navigationOptions: {
+  //     drawerLabel: 'Выйти',
+  //     drawerIcon: <Ionicons color={'white'} size={25} name="ios-log-in" />,
+  //   },
+  // },
+
 };
+
+
 
 const DrawerNavigatorConfig = {
   intialRouteName: Navigator,
@@ -115,6 +120,7 @@ const DrawerNavigatorConfig = {
     inactiveTintColor: 'rgba(255, 255, 255, 0.7)',
     labelStyle: {
       fontFamily: 'MullerNarrow-Light',
+      fontSize:18,
     },
 
     itemsContainerStyle: {
@@ -132,4 +138,5 @@ const MainNavigator = createDrawerNavigator(
   DrawerNavigatorConfig
 );
 
-export const AppNavigation = createAppContainer(MainNavigator);
+export default MainNavigator
+// export const AppNavigation = createAppContainer(MainNavigator);

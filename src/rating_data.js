@@ -3,7 +3,7 @@ export const RATING_DATA = [
     place: 1,
     name: 'Петрович',
     rating: 123,
-    photo: 'https://clck.ru/MoRdX',
+    photo: 'https://clck.ru/MtgS8',
   },
   {
     place: 2,
